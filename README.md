@@ -3,7 +3,6 @@
 # Important note
 
 All the keys that were accidently commited have now been revoked, changed, and securely stored.
-The Stripe pulishable key is not private information, it can be public.
 
 ## Project setup
 
