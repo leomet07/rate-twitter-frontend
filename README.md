@@ -1,4 +1,4 @@
-# Momenta
+# Rate twitter frontend
 
 # Important note
 
