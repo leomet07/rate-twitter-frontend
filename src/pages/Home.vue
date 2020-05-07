@@ -5,10 +5,15 @@
             <br />M<i class="fas fa-heartbeat"></i>menta
         </h1>
         <button v-if="signed_in" v-on:click="send_request">Send Request</button>
+
+        <div ref="output" id="output">
+            <h3 ref="word_positivity_rating">word_positivity_rating</h3>
+        </div>
     </div>
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
 /* eslint no-console: ["error", { allow: ["log" ,"warn", "error"] }] */
 import firebase from "firebase"; // eslint-disable-line no-unused-vars
 import { mapGetters } from "vuex"; // eslint-disable-line no-unused-vars
@@ -23,8 +28,10 @@ export default {
     components: {},
     methods: {
         async send_request() {
+            //let refs = this.$refs;
             // eslint-disable-next-line no-console
             if (user) {
+                //console.log(scope.$refs);
                 // read a key from db
 
                 firebase
@@ -33,7 +40,7 @@ export default {
                     .child("users")
                     .child(user.uid)
 
-                    .once("value", function(datasnapshot) {
+                    .once("value", (datasnapshot) => {
                         const val = datasnapshot.val();
                         console.log("Db read");
                         console.log(val);
@@ -60,7 +67,7 @@ export default {
                         xhr.send();
 
                         // 4. This will be called after the response is received
-                        xhr.onload = function() {
+                        xhr.onload = () => {
                             if (xhr.status != 200) {
                                 // analyze HTTP status of the response
                                 // eslint-disable-next-line no-console
@@ -79,6 +86,18 @@ export default {
                             console.log(xhr.response);
                             let json = JSON.parse(xhr.response);
                             console.log(json);
+
+                            // eslint-disable-next-line no-unused-vars
+                            let {
+                                word_positivity_rating,
+                                tweet_status,
+                                success,
+                            } = json;
+                            console.log(word_positivity_rating);
+
+                            this.$refs.word_positivity_rating.innerHTML =
+                                "The tweets word positivity rating is " +
+                                String(word_positivity_rating);
                         };
                     });
 
