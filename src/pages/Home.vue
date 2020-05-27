@@ -49,12 +49,14 @@ export default {
                         let xhr = new XMLHttpRequest();
 
                         // 2. Configure it: GET-request for the URL /article/.../load
+
+                        // 46.101.117.119
                         xhr.open(
                             "GET",
-                            "http://46.101.117.119/api/v1/rate?uid=" +
+                            "http://127.0.0.1:5000/api/v1/rate?uid=" +
                                 String(user.uid) +
                                 "&tweet_status=" +
-                                "1257334423386808320" +
+                                "1265032923897610240" +
                                 "&key=" +
                                 String(single_use_id)
                         );
